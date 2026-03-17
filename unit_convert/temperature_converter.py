@@ -28,7 +28,7 @@ def convert_temperature(x: float, unit_from: UnitTemperature, unit_to: UnitTempe
         case "F":
             return celsius_to_fahrenheit(x)
         case "K":
-            return celsius_to_fahrenheit(x)
+            return celsius_to_kelvin(x)
         case _:
             raise InvalidUnitError("`unit_to is not an accepted temperature unit")
 
@@ -43,6 +43,4 @@ def celsius_to_kelvin(x: float) -> float:
 
 def celsius_to_fahrenheit(x: float) -> float:
     return x * 1.8 + 32
-
-
 
