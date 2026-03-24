@@ -1,7 +1,7 @@
 import pytest
 
 from unit_convert.converter_types import InvalidUnitError, UnitData
-from unit_convert.data_converter import convert_data
+from unit_convert.data_converter import DataUnit, convert_data
 
 
 EPSILON = 0.000001
@@ -33,3 +33,13 @@ class TestDataConvert:
 
         with pytest.raises(InvalidUnitError):
             convert_data(10, UnitData.MB, "GB")
+
+    def test_convert_data_backward_compatible_alias(self):
+        assert _is_close_enough(convert_data(8, DataUnit.B, DataUnit.b), 64)
+
+    def test_convert_data_invalid_value_types(self):
+        with pytest.raises(InvalidUnitError):
+            convert_data("A", UnitData.B, UnitData.b)
+
+        with pytest.raises(InvalidUnitError):
+            convert_data(None, UnitData.B, UnitData.b)

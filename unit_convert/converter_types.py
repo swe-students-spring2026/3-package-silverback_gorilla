@@ -25,18 +25,18 @@ class UnitDistance(Enum):
 
 
 class UnitData(Enum):
-    # Bytes (binary, base = byte)
-    B = 1
-    KB = 1024
-    MB = 1024 ** 2
-    GB = 1024 ** 3
-    TB = 1024 ** 4
-    PB = 1024 ** 5
-    EB = 1024 ** 6
+    # Bytes
+    B = "byte"
+    KB = "kilobyte"
+    MB = "megabyte"
+    GB = "gigabyte"
+    TB = "terabyte"
+    PB = "petabyte"
+    EB = "exabyte"
 
-    # Bits (1 byte = 8 bits)
-    b = 1 / 8
-    Kb = 1024 / 8
-    Mb = (1024 ** 2) / 8
-    Gb = (1024 ** 3) / 8
-    Tb = (1024 ** 4) / 8
+    # Bits
+    b = "bit"
+    Kb = "kilobit"
+    Mb = "megabit"
+    Gb = "gigabit"
+    Tb = "terabit"
