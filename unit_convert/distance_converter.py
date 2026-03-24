@@ -1,21 +1,4 @@
-from enum import Enum
-
-class InvalidUnitError(Exception):
-    pass
-
-class UnitDistance(Enum):
-    FM = "femtometer"
-    PM = "picometer"
-    NM = "nanometer"
-    UM = "micrometer"
-    MM = "millimeter"
-    CM = "centimeter"
-    M  = "meter"
-    KM = "kilometer"
-    IN = "inch"
-    FT = "feet"
-    YD = "yard"
-    MI = "mile"
+from converter_types import InvalidUnitError, UnitDistance
 
 def convert_distance(x: float, unit_from: UnitDistance, unit_to: UnitDistance) -> float:
     if(unit_from == unit_to): return x
