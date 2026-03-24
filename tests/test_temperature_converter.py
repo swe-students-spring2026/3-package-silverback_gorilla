@@ -1,5 +1,5 @@
 import pytest
-from unit_convert import temperature_converter
+from unit_convert import temperature_converter, converter_types
 
 EPSILON = 0.000001
 
@@ -36,21 +36,21 @@ class TestTemperatureConvert:
 
 
     def test_convert_temperature(self):
-        assert abs(temperature_converter.convert_temperature(0, temperature_converter.UnitTemperature.C, temperature_converter.UnitTemperature.C) - 0) < EPSILON
-        assert abs(temperature_converter.convert_temperature(0, temperature_converter.UnitTemperature.C, temperature_converter.UnitTemperature.F) - 32) < EPSILON
-        assert abs(temperature_converter.convert_temperature(0, temperature_converter.UnitTemperature.C, temperature_converter.UnitTemperature.K) - 273.15) < EPSILON
+        assert abs(temperature_converter.convert_temperature(0, converter_types.UnitTemperature.C, converter_types.UnitTemperature.C) - 0) < EPSILON
+        assert abs(temperature_converter.convert_temperature(0, converter_types.UnitTemperature.C, converter_types.UnitTemperature.F) - 32) < EPSILON
+        assert abs(temperature_converter.convert_temperature(0, converter_types.UnitTemperature.C, converter_types.UnitTemperature.K) - 273.15) < EPSILON
 
-        assert abs(temperature_converter.convert_temperature(0, temperature_converter.UnitTemperature.F, temperature_converter.UnitTemperature.C) + 17.7778) < EPSILON
-        assert abs(temperature_converter.convert_temperature(0, temperature_converter.UnitTemperature.F, temperature_converter.UnitTemperature.F) - 0) < EPSILON
-        assert abs(temperature_converter.convert_temperature(0, temperature_converter.UnitTemperature.F, temperature_converter.UnitTemperature.K) - 255.3722) < EPSILON
+        assert abs(temperature_converter.convert_temperature(0, converter_types.UnitTemperature.F, converter_types.UnitTemperature.C) + 17.7778) < EPSILON
+        assert abs(temperature_converter.convert_temperature(0, converter_types.UnitTemperature.F, converter_types.UnitTemperature.F) - 0) < EPSILON
+        assert abs(temperature_converter.convert_temperature(0, converter_types.UnitTemperature.F, converter_types.UnitTemperature.K) - 255.3722) < EPSILON
 
-        assert abs(temperature_converter.convert_temperature(0, temperature_converter.UnitTemperature.K, temperature_converter.UnitTemperature.C) + 273.15) < EPSILON
-        assert abs(temperature_converter.convert_temperature(0, temperature_converter.UnitTemperature.K, temperature_converter.UnitTemperature.F) + 459.67) < EPSILON
-        assert abs(temperature_converter.convert_temperature(0, temperature_converter.UnitTemperature.K, temperature_converter.UnitTemperature.K) - 0) < EPSILON
+        assert abs(temperature_converter.convert_temperature(0, converter_types.UnitTemperature.K, converter_types.UnitTemperature.C) + 273.15) < EPSILON
+        assert abs(temperature_converter.convert_temperature(0, converter_types.UnitTemperature.K, converter_types.UnitTemperature.F) + 459.67) < EPSILON
+        assert abs(temperature_converter.convert_temperature(0, converter_types.UnitTemperature.K, converter_types.UnitTemperature.K) - 0) < EPSILON
 
-        with pytest.raises(temperature_converter.InvalidUnitError):
-            temperature_converter.convert_temperature(0, "celsius", temperature_converter.UnitTemperature.C)
-            temperature_converter.convert_temperature(0, temperature_converter.UnitTemperature.C, "celsius")
+        with pytest.raises(converter_types.InvalidUnitError):
+            temperature_converter.convert_temperature(0, "celsius", converter_types.UnitTemperature.C)
+            temperature_converter.convert_temperature(0, converter_types.UnitTemperature.C, "celsius")
             
         with pytest.raises(TypeError):
-            temperature_converter.convert_temperature(temperature_converter.convert_temperature("A", temperature_converter.UnitTemperature.K, temperature_converter.UnitTemperature.K))
+            temperature_converter.convert_temperature(temperature_converter.convert_temperature("A", converter_types.UnitTemperature.K, converter_types.UnitTemperature.K))
