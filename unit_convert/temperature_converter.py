@@ -1,12 +1,4 @@
-from enum import Enum
-
-class InvalidUnitError(Exception):
-    pass
-
-class UnitTemperature(Enum):
-    C = "celsius"
-    F = "fahrenheit"
-    K = "kelvin"
+from unit_convert.converter_types import InvalidUnitError, UnitTemperature
 
 NDIGITS = 4
 
