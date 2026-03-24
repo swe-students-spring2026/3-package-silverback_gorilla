@@ -7,8 +7,8 @@ EPSILON = 0.000001
 def _is_close_enough(v1: float, v2: float) -> bool:
     return abs(v1 - v2) < EPSILON
 
-class TestTemperatureConvert:
-    def test_convert_temperature(self):
+class TestDistanceConvert:
+    def test_convert_distance(self):
         x = 10
         assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.FM), 10000.0)
         assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.PM), 10)
