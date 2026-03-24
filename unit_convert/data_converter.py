@@ -14,7 +14,7 @@ def convert_data(x: float, unit_from: UnitData, unit_to: UnitData) -> float:
         "petabyte": 1 / (1024 ** 5),
         "exabyte": 1 / (1024 ** 6),
         # Bits
-        "bit": 1 / 8,
+        "bit": 8,
         "kilobit": 8 / 1024,
         "megabit": 8 / (1024 ** 2),
         "gigabit": 8 / (1024 ** 3),
@@ -35,7 +35,3 @@ def convert_data(x: float, unit_from: UnitData, unit_to: UnitData) -> float:
 
     except (AttributeError, TypeError):
         raise InvalidUnitError("Invalid data unit provided")
-
-
-# Backward-compatible alias.
-DataUnit = UnitData
