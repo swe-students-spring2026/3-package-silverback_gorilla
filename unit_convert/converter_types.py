@@ -40,3 +40,8 @@ class UnitData(Enum):
     Mb = "megabit"
     Gb = "gigabit"
     Tb = "terabit"
+
+class UnitMass(Enum):
+    G = "gram"
+    P = "pound"
+    K = "kilogram"
