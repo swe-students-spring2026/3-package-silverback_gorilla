@@ -22,3 +22,21 @@ class UnitDistance(Enum):
     FT = "feet"
     YD = "yard"
     MI = "mile"
+
+
+class UnitData(Enum):
+    # Bytes
+    B = "byte"
+    KB = "kilobyte"
+    MB = "megabyte"
+    GB = "gigabyte"
+    TB = "terabyte"
+    PB = "petabyte"
+    EB = "exabyte"
+
+    # Bits
+    b = "bit"
+    Kb = "kilobit"
+    Mb = "megabit"
+    Gb = "gigabit"
+    Tb = "terabit"
