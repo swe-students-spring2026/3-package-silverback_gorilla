@@ -56,4 +56,4 @@ class TestMassConvert:
             mass_converter.convert_mass(0, mass_converter.UnitMass.G, "gram")
 
         with pytest.raises(TypeError):
-            mass_converter.convert_mass("A", mass_converter.UnitMass.G, mass_converter.UnitMass.G)
+            mass_converter.convert_mass("2", mass_converter.UnitMass.G, mass_converter.UnitMass.G)

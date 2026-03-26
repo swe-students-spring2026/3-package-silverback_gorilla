@@ -1,36 +1,32 @@
-from enum import Enum
-
-class InvalidUnitError(Exception):
-    pass
-
-class UnitMass(Enum):
-    G = "gram"
-    P = "pound"
-    K = "kilogram"
+from unit_convert.converter_types import InvalidUnitError, UnitMass
+import numbers
 
 NDIGITS = 8
 
 def convert_mass(x: float, unit_from: UnitMass, unit_to: UnitMass) -> float:
 
+    if not isinstance(x, numbers.Number):
+        raise TypeError("`x` is not a valid number")
+
     if unit_from == unit_to: return x
 
     #Convert to grams first
-    match unit_from.name:
-        case "G":
+    match unit_from:
+        case UnitMass.G:
             pass
-        case "P":
+        case UnitMass.P:
             x = pounds_to_grams(x)
-        case "K":
+        case UnitMass.K:
             x = kilograms_to_grams(x)
         case _:
             raise InvalidUnitError("`unit_from` is not an accepted mass unit")
 
-    match unit_to.name:
-        case "G":
+    match unit_to:
+        case UnitMass.G:
             return x
-        case "P":
+        case UnitMass.P:
             return grams_to_pounds(x)
-        case "K":
+        case UnitMass.K:
             return grams_to_kilograms(x)
         case _:
             raise InvalidUnitError("`unit_to is not an accepted mass unit")
