@@ -1,8 +1,14 @@
-from unit_convert.converter_types import InvalidUnitError, UnitTemperature
+from .converter_types import InvalidUnitError, UnitTemperature
 
 NDIGITS = 4
 
 def convert_temperature(x: float, unit_from: UnitTemperature, unit_to: UnitTemperature) -> float:
+
+    try:
+        from_name = unit_from.name
+        to_name = unit_to.name
+    except AttributeError:
+        raise InvalidUnitError("Units must be valid UnitTemperature enum members")
 
     if unit_from == unit_to: return x
 
