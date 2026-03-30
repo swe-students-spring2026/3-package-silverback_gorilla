@@ -3,14 +3,16 @@ import numbers
 
 NDIGITS = 8
 
+
 def convert_mass(x: float, unit_from: UnitMass, unit_to: UnitMass) -> float:
 
     if not isinstance(x, numbers.Number):
         raise TypeError("`x` is not a valid number")
 
-    if unit_from == unit_to: return x
+    if unit_from == unit_to:
+        return x
 
-    #Convert to grams first
+    # Convert to grams first
     match unit_from:
         case UnitMass.G:
             pass
@@ -31,14 +33,18 @@ def convert_mass(x: float, unit_from: UnitMass, unit_to: UnitMass) -> float:
         case _:
             raise InvalidUnitError("`unit_to is not an accepted mass unit")
 
+
 def pounds_to_grams(x: float) -> float:
     return round(x * 453.59237, NDIGITS)
+
 
 def kilograms_to_grams(x: float) -> float:
     return round(x * 1000, NDIGITS)
 
+
 def grams_to_pounds(x: float) -> float:
     return round(x / 453.59237, NDIGITS)
+
 
 def grams_to_kilograms(x: float) -> float:
     return round(x / 1000, NDIGITS)

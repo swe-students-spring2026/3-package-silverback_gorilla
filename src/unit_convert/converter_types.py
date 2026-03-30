@@ -1,13 +1,15 @@
-
 class InvalidUnitError(Exception):
     pass
 
+
 from enum import Enum
+
 
 class UnitTemperature(Enum):
     C = "celsius"
     F = "fahrenheit"
     K = "kelvin"
+
 
 class UnitDistance(Enum):
     FM = "femtometer"
@@ -16,7 +18,7 @@ class UnitDistance(Enum):
     UM = "micrometer"
     MM = "millimeter"
     CM = "centimeter"
-    M  = "meter"
+    M = "meter"
     KM = "kilometer"
     IN = "inch"
     FT = "feet"
@@ -40,6 +42,7 @@ class UnitData(Enum):
     Mb = "megabit"
     Gb = "gigabit"
     Tb = "terabit"
+
 
 class UnitMass(Enum):
     G = "gram"

@@ -4,300 +4,891 @@ from unit_convert.converter_types import InvalidUnitError, UnitDistance
 
 EPSILON = 0.000001
 
+
 def _is_close_enough(v1: float, v2: float) -> bool:
     return abs(v1 - v2) < EPSILON
+
 
 class TestTemperatureConvert:
     def test_convert_temperature(self):
         x = 10
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.FM), 10000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.PM), 10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.NM), 0.01)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.UM), 9.999999999999999e-06)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.MM), 1e-08)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.CM), 9.999999999999999e-10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.M ), 1e-11)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.KM), 1e-14)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.IN), 3.9370078699999996e-10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.FT), 3.2808399e-11)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.YD), 1.0936132999999999e-11)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.MI), 6.213711922373339e-15)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.FM), 10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.PM), 0.01)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.NM), 1e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.UM), 1e-08)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.MM), 1e-11)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.CM), 1e-12)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.M ), 1e-14)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.KM), 1e-17)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.IN), 3.93700787e-13)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.FT), 3.2808399e-14)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.YD), 1.0936132999999999e-14)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.MI), 6.213711922373339e-18)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.FM), 10000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.PM), 10000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.NM), 10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.UM), 0.01)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.MM), 1e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.CM), 1e-06)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.M ), 1e-08)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.KM), 1.0000000000000001e-11)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.IN), 3.9370078700000003e-07)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.FT), 3.2808399e-08)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.YD), 1.0936132999999999e-08)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.MI), 6.213711922373339e-12)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.FM), 10000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.PM), 10000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.NM), 10000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.UM), 10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.MM), 0.01)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.CM), 0.001)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.M ), 1e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.KM), 1e-08)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.IN), 0.00039370078700000003)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.FT), 3.2808399000000007e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.YD), 1.0936133e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.MI), 6.21371192237334e-09)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.FM), 10000000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.PM), 10000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.NM), 10000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.UM), 10000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.MM), 10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.CM), 1.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.M ), 0.01)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.KM), 1e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.IN), 0.393700787)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.FT), 0.032808399)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.YD), 0.010936132999999999)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.MI), 6.213711922373339e-06)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.FM), 100000000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.PM), 100000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.NM), 100000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.UM), 100000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.MM), 100.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.CM), 10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.M ), 0.1)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.KM), 0.0001)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.IN), 3.9370078700000004)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.FT), 0.32808399000000005)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.YD), 0.10936132999999999)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.MI), 6.213711922373339e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.FM), 1e+16)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.PM), 10000000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.NM), 10000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.UM), 10000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.MM), 10000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.CM), 1000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.M ), 10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.KM), 0.01)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.IN), 393.700787)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.FT), 32.808399)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.YD), 10.936132999999998)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.MI), 0.006213711922373339)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.FM), 1e+19)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.PM), 1e+16)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.NM), 10000000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.UM), 10000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.MM), 10000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.CM), 1000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.M ), 10000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.KM), 10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.IN), 393700.787)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.FT), 32808.399000000005)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.YD), 10936.133)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.MI), 6.2137119223733395)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.FM), 254000000259079.97)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.PM), 254000000259.08)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.NM), 254000000.25908)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.UM), 254000.00025907997)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.MM), 254.00000025908)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.CM), 25.400000025908)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.M ), 0.25400000025908)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.KM), 0.00025400000025907997)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.IN), 10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.FT), 0.83333333545)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.YD), 0.2777777784833333)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.MI), 0.00015782828298926765)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.FM), 3047999995367040.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.PM), 3047999995367.04)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.NM), 3047999995.3670397)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.UM), 3047999.99536704)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.MM), 3047.99999536704)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.CM), 304.799999536704)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.M ), 3.04799999536704)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.KM), 0.0030479999953670397)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.IN), 119.99999969519999)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.FT), 10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.YD), 3.3333333333333326)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.MI), 0.0018939393910606059)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.FM), 9143999986101122.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.PM), 9143999986101.121)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.NM), 9143999986.101122)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.UM), 9143999.98610112)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.MM), 9143.999986101122)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.CM), 914.3999986101121)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.M ), 9.143999986101122)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.KM), 0.009143999986101123)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.IN), 359.99999908560005)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.FT), 30.000000000000007)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.YD), 10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.MI), 0.005681818173181819)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.FM), 1.609344e+19)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.PM), 1.609344e+16)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.NM), 16093440000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.UM), 16093440000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.MM), 16093440.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.CM), 1609344.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.M ), 16093.44)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.KM), 16.09344)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.IN), 633599.999353728)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.FT), 52800.000080256)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.YD), 17600.000026751997)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.MI), 10)
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.FM), 10000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.PM), 10
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.NM), 0.01
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.UM), 9.999999999999999e-06
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.MM), 1e-08
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.CM), 9.999999999999999e-10
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.M), 1e-11
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.KM), 1e-14
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.IN),
+            3.9370078699999996e-10,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.FT), 3.2808399e-11
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.YD),
+            1.0936132999999999e-11,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.MI), 6.213711922373339e-15
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.FM), 10
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.PM), 0.01
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.NM), 1e-05
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.UM), 1e-08
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.MM), 1e-11
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.CM), 1e-12
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.M), 1e-14
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.KM), 1e-17
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.IN), 3.93700787e-13
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.FT), 3.2808399e-14
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.YD),
+            1.0936132999999999e-14,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.MI), 6.213711922373339e-18
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.FM), 10000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.PM), 10000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.NM), 10
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.UM), 0.01
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.MM), 1e-05
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.CM), 1e-06
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.M), 1e-08
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.KM),
+            1.0000000000000001e-11,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.IN),
+            3.9370078700000003e-07,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.FT), 3.2808399e-08
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.YD),
+            1.0936132999999999e-08,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.MI), 6.213711922373339e-12
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.FM), 10000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.PM), 10000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.NM), 10000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.UM), 10
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.MM), 0.01
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.CM), 0.001
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.M), 1e-05
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.KM), 1e-08
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.IN),
+            0.00039370078700000003,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.FT),
+            3.2808399000000007e-05,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.YD), 1.0936133e-05
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.MI), 6.21371192237334e-09
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.FM), 10000000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.PM), 10000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.NM), 10000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.UM), 10000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.MM), 10
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.CM), 1.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.M), 0.01
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.KM), 1e-05
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.IN), 0.393700787
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.FT), 0.032808399
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.YD), 0.010936132999999999
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.MI), 6.213711922373339e-06
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.FM), 100000000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.PM), 100000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.NM), 100000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.UM), 100000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.MM), 100.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.CM), 10
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.M), 0.1
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.KM), 0.0001
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.IN), 3.9370078700000004
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.FT), 0.32808399000000005
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.YD), 0.10936132999999999
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.MI), 6.213711922373339e-05
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.FM), 1e16
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.PM), 10000000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.NM), 10000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.UM), 10000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.MM), 10000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.CM), 1000.0
+        )
+        assert _is_close_enough(convert_distance(x, UnitDistance.M, UnitDistance.M), 10)
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.KM), 0.01
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.IN), 393.700787
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.FT), 32.808399
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.YD), 10.936132999999998
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.MI), 0.006213711922373339
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.FM), 1e19
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.PM), 1e16
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.NM), 10000000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.UM), 10000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.MM), 10000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.CM), 1000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.M), 10000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.KM), 10
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.IN), 393700.787
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.FT), 32808.399000000005
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.YD), 10936.133
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.MI), 6.2137119223733395
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.FM), 254000000259079.97
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.PM), 254000000259.08
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.NM), 254000000.25908
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.UM), 254000.00025907997
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.MM), 254.00000025908
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.CM), 25.400000025908
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.M), 0.25400000025908
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.KM),
+            0.00025400000025907997,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.IN), 10
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.FT), 0.83333333545
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.YD), 0.2777777784833333
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.MI),
+            0.00015782828298926765,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.FM), 3047999995367040.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.PM), 3047999995367.04
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.NM), 3047999995.3670397
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.UM), 3047999.99536704
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.MM), 3047.99999536704
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.CM), 304.799999536704
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.M), 3.04799999536704
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.KM), 0.0030479999953670397
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.IN), 119.99999969519999
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.FT), 10
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.YD), 3.3333333333333326
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.MI), 0.0018939393910606059
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.FM), 9143999986101122.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.PM), 9143999986101.121
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.NM), 9143999986.101122
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.UM), 9143999.98610112
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.MM), 9143.999986101122
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.CM), 914.3999986101121
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.M), 9.143999986101122
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.KM), 0.009143999986101123
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.IN), 359.99999908560005
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.FT), 30.000000000000007
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.YD), 10
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.MI), 0.005681818173181819
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.FM), 1.609344e19
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.PM), 1.609344e16
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.NM), 16093440000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.UM), 16093440000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.MM), 16093440.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.CM), 1609344.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.M), 16093.44
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.KM), 16.09344
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.IN), 633599.999353728
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.FT), 52800.000080256
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.YD), 17600.000026751997
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.MI), 10
+        )
         x = 12345
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.FM), 12345000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.PM), 12345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.NM), 12.345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.UM), 0.012345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.MM), 1.2345000000000001e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.CM), 1.2345e-06)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.M ), 1.2345e-08)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.KM), 1.2345e-11)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.IN), 4.860236215515e-07)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.FT), 4.0501968565500005e-08)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.YD), 1.35006561885e-08)
-        assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.MI), 7.670827368169887e-12)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.FM), 12345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.PM), 12.345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.NM), 0.012345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.UM), 1.2345000000000001e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.MM), 1.2345e-08)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.CM), 1.2345e-09)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.M ), 1.2345e-11)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.KM), 1.2345e-14)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.IN), 4.860236215515e-10)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.FT), 4.0501968565500004e-11)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.YD), 1.35006561885e-11)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FM, UnitDistance.MI), 7.670827368169888e-15)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.FM), 12345000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.PM), 12345000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.NM), 12345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.UM), 12.344999999999999)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.MM), 0.012345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.CM), 0.0012345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.M ), 1.2345e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.KM), 1.2344999999999999e-08)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.IN), 0.00048602362155149997)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.FT), 4.05019685655e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.YD), 1.3500656188499999e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.NM, UnitDistance.MI), 7.670827368169887e-09)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.FM), 12345000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.PM), 12345000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.NM), 12345000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.UM), 12345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.MM), 12.345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.CM), 1.2345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.M ), 0.012345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.KM), 1.2345e-05)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.IN), 0.48602362155150003)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.FT), 0.0405019685655)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.YD), 0.013500656188499998)
-        assert _is_close_enough(convert_distance(x, UnitDistance.UM, UnitDistance.MI), 7.670827368169887e-06)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.FM), 1.2345e+16)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.PM), 12345000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.NM), 12345000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.UM), 12345000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.MM), 12345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.CM), 1234.5)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.M ), 12.345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.KM), 0.012345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.IN), 486.0236215515)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.FT), 40.5019685655)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.YD), 13.500656188499999)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MM, UnitDistance.MI), 0.007670827368169888)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.FM), 1.2345e+17)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.PM), 123450000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.NM), 123450000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.UM), 123450000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.MM), 123450.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.CM), 12345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.M ), 123.45)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.KM), 0.12345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.IN), 4860.236215515)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.FT), 405.01968565500005)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.YD), 135.006561885)
-        assert _is_close_enough(convert_distance(x, UnitDistance.CM, UnitDistance.MI), 0.07670827368169887)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.FM), 1.2345e+19)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.PM), 1.2345e+16)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.NM), 12345000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.UM), 12345000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.MM), 12345000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.CM), 1234500.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.M ), 12345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.KM), 12.345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.IN), 486023.6215515)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.FT), 40501.9685655)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.YD), 13500.6561885)
-        assert _is_close_enough(convert_distance(x, UnitDistance.M , UnitDistance.MI), 7.6708273681698875)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.FM), 1.2345e+22)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.PM), 1.2345e+19)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.NM), 1.2345e+16)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.UM), 12345000000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.MM), 12345000000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.CM), 1234500000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.M ), 12345000.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.KM), 12345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.IN), 486023621.5515)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.FT), 40501968.5655)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.YD), 13500656.188499998)
-        assert _is_close_enough(convert_distance(x, UnitDistance.KM, UnitDistance.MI), 7670.827368169887)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.FM), 3.1356300031983424e+17)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.PM), 313563000319834.25)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.NM), 313563000319.8343)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.UM), 313563000.31983423)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.MM), 313563.0003198343)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.CM), 31356.300031983425)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.M ), 313.56300031983426)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.KM), 0.31356300031983425)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.IN), 12345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.FT), 1028.7500026130251)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.YD), 342.916667537675)
-        assert _is_close_enough(convert_distance(x, UnitDistance.IN, UnitDistance.MI), 0.19483901535025094)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.FM), 3.762755994280611e+18)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.PM), 3762755994280610.5)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.NM), 3762755994280.6104)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.UM), 3762755994.2806106)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.MM), 3762755.9942806107)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.CM), 376275.59942806105)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.M ), 3762.7559942806106)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.KM), 3.7627559942806106)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.IN), 148139.9996237244)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.FT), 12345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.YD), 4114.999999999999)
-        assert _is_close_enough(convert_distance(x, UnitDistance.FT, UnitDistance.MI), 2.338068178264318)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.FM), 1.1288267982841833e+19)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.PM), 1.1288267982841834e+16)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.NM), 11288267982841.834)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.UM), 11288267982.841833)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.MM), 11288267.982841833)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.CM), 1128826.7982841833)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.M ), 11288.267982841833)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.KM), 11.288267982841834)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.IN), 444419.99887117324)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.FT), 37035.0)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.YD), 12345)
-        assert _is_close_enough(convert_distance(x, UnitDistance.YD, UnitDistance.MI), 7.014204534792954)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.FM), 1.986735168e+22)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.PM), 1.9867351680000004e+19)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.NM), 1.9867351680000004e+16)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.UM), 19867351680000.004)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.MM), 19867351680.000004)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.CM), 1986735168.0000002)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.M ), 19867351.680000003)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.KM), 19867.351680000003)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.IN), 782179199.2021774)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.FT), 65181600.09907605)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.YD), 21727200.033025347)
-        assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.MI), 12345)
-
-
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.FM), 12345000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.PM), 12345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.NM), 12.345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.UM), 0.012345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.MM),
+            1.2345000000000001e-05,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.CM), 1.2345e-06
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.M), 1.2345e-08
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.KM), 1.2345e-11
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.IN), 4.860236215515e-07
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.FT),
+            4.0501968565500005e-08,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.YD), 1.35006561885e-08
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.PM, UnitDistance.MI), 7.670827368169887e-12
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.FM), 12345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.PM), 12.345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.NM), 0.012345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.UM),
+            1.2345000000000001e-05,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.MM), 1.2345e-08
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.CM), 1.2345e-09
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.M), 1.2345e-11
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.KM), 1.2345e-14
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.IN), 4.860236215515e-10
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.FT),
+            4.0501968565500004e-11,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.YD), 1.35006561885e-11
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FM, UnitDistance.MI), 7.670827368169888e-15
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.FM), 12345000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.PM), 12345000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.NM), 12345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.UM), 12.344999999999999
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.MM), 0.012345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.CM), 0.0012345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.M), 1.2345e-05
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.KM),
+            1.2344999999999999e-08,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.IN),
+            0.00048602362155149997,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.FT), 4.05019685655e-05
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.YD),
+            1.3500656188499999e-05,
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.NM, UnitDistance.MI), 7.670827368169887e-09
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.FM), 12345000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.PM), 12345000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.NM), 12345000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.UM), 12345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.MM), 12.345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.CM), 1.2345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.M), 0.012345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.KM), 1.2345e-05
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.IN), 0.48602362155150003
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.FT), 0.0405019685655
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.YD), 0.013500656188499998
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.UM, UnitDistance.MI), 7.670827368169887e-06
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.FM), 1.2345e16
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.PM), 12345000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.NM), 12345000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.UM), 12345000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.MM), 12345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.CM), 1234.5
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.M), 12.345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.KM), 0.012345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.IN), 486.0236215515
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.FT), 40.5019685655
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.YD), 13.500656188499999
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MM, UnitDistance.MI), 0.007670827368169888
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.FM), 1.2345e17
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.PM), 123450000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.NM), 123450000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.UM), 123450000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.MM), 123450.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.CM), 12345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.M), 123.45
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.KM), 0.12345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.IN), 4860.236215515
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.FT), 405.01968565500005
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.YD), 135.006561885
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.CM, UnitDistance.MI), 0.07670827368169887
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.FM), 1.2345e19
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.PM), 1.2345e16
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.NM), 12345000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.UM), 12345000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.MM), 12345000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.CM), 1234500.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.M), 12345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.KM), 12.345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.IN), 486023.6215515
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.FT), 40501.9685655
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.YD), 13500.6561885
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.M, UnitDistance.MI), 7.6708273681698875
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.FM), 1.2345e22
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.PM), 1.2345e19
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.NM), 1.2345e16
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.UM), 12345000000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.MM), 12345000000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.CM), 1234500000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.M), 12345000.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.KM), 12345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.IN), 486023621.5515
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.FT), 40501968.5655
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.YD), 13500656.188499998
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.KM, UnitDistance.MI), 7670.827368169887
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.FM), 3.1356300031983424e17
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.PM), 313563000319834.25
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.NM), 313563000319.8343
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.UM), 313563000.31983423
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.MM), 313563.0003198343
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.CM), 31356.300031983425
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.M), 313.56300031983426
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.KM), 0.31356300031983425
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.IN), 12345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.FT), 1028.7500026130251
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.YD), 342.916667537675
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.IN, UnitDistance.MI), 0.19483901535025094
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.FM), 3.762755994280611e18
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.PM), 3762755994280610.5
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.NM), 3762755994280.6104
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.UM), 3762755994.2806106
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.MM), 3762755.9942806107
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.CM), 376275.59942806105
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.M), 3762.7559942806106
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.KM), 3.7627559942806106
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.IN), 148139.9996237244
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.FT), 12345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.YD), 4114.999999999999
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.FT, UnitDistance.MI), 2.338068178264318
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.FM), 1.1288267982841833e19
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.PM), 1.1288267982841834e16
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.NM), 11288267982841.834
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.UM), 11288267982.841833
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.MM), 11288267.982841833
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.CM), 1128826.7982841833
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.M), 11288.267982841833
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.KM), 11.288267982841834
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.IN), 444419.99887117324
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.FT), 37035.0
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.YD), 12345
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.YD, UnitDistance.MI), 7.014204534792954
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.FM), 1.986735168e22
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.PM), 1.9867351680000004e19
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.NM), 1.9867351680000004e16
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.UM), 19867351680000.004
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.MM), 19867351680.000004
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.CM), 1986735168.0000002
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.M), 19867351.680000003
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.KM), 19867.351680000003
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.IN), 782179199.2021774
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.FT), 65181600.09907605
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.YD), 21727200.033025347
+        )
+        assert _is_close_enough(
+            convert_distance(x, UnitDistance.MI, UnitDistance.MI), 12345
+        )

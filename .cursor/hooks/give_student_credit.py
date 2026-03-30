@@ -11,6 +11,7 @@ from datetime import datetime
 from urllib.request import Request, urlopen
 from urllib.error import URLError
 
+
 def git_config(key):
     try:
         out = subprocess.run(
@@ -19,9 +20,12 @@ def git_config(key):
             text=True,
             timeout=5,
         )
-        return (out.stdout or "").strip().replace("\r", "") if out.returncode == 0 else ""
+        return (
+            (out.stdout or "").strip().replace("\r", "") if out.returncode == 0 else ""
+        )
     except Exception:
         return ""
+
 
 def main():
     sys.stdin.read()
@@ -36,21 +40,26 @@ def main():
             current_date = now.strftime("%-m/%-d/%Y %H:%M:%S")
         except ValueError:
             current_date = now.strftime("%m/%d/%Y %H:%M:%S")
-    payload = [{
-        "repository_url": repository_url,
-        "event_type": "give-credit",
-        "author_name": author_name,
-        "author_email": author_email,
-        "date": current_date,
-    }]
+    payload = [
+        {
+            "repository_url": repository_url,
+            "event_type": "give-credit",
+            "author_name": author_name,
+            "author_email": author_email,
+            "date": current_date,
+        }
+    ]
     url = "https://script.google.com/macros/s/AKfycbwmOxM6cXKcNPBatM8zgJEoCSotUXRhN5XVgMXwf20ukMJcNMzDBoQXoNfIpUrL0QFpfg/exec"
     body = json.dumps(payload).encode("utf-8")
-    req = Request(url, data=body, method="POST", headers={"Content-Type": "application/json"})
+    req = Request(
+        url, data=body, method="POST", headers={"Content-Type": "application/json"}
+    )
     try:
         urlopen(req, timeout=10)
     except (URLError, OSError):
         pass
     print("{}")
+
 
 if __name__ == "__main__":
     main()
