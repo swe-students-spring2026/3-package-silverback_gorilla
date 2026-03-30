@@ -1,5 +1,5 @@
 import pytest
-from unit_convert import temperature_converter, converter_types
+from src.unit_convert import temperature_converter, converter_types
 
 EPSILON = 0.000001
 
@@ -51,6 +51,10 @@ class TestTemperatureConvert:
         with pytest.raises(converter_types.InvalidUnitError):
             temperature_converter.convert_temperature(0, "celsius", converter_types.UnitTemperature.C)
             temperature_converter.convert_temperature(0, converter_types.UnitTemperature.C, "celsius")
+
+        with pytest.raises(AttributeError):
+            temperature_converter.convert_temperature(0, converter_types.UnitTemperature.E, converter_types.UnitTemperature.C)
+            temperature_converter.convert_temperature(0, converter_types.UnitTemperature.C, converter_types.UnitTemperature.E)
             
         with pytest.raises(TypeError):
             temperature_converter.convert_temperature(temperature_converter.convert_temperature("A", converter_types.UnitTemperature.K, converter_types.UnitTemperature.K))
