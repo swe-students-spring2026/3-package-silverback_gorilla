@@ -1,3 +1,4 @@
+import math
 import pytest
 
 from src.unit_convert.converter_types import InvalidUnitError, UnitData
@@ -8,7 +9,9 @@ EPSILON = 0.000001
 
 
 def _is_close_enough(v1: float, v2: float) -> bool:
-    return abs(v1 - v2) < EPSILON
+    v1_mantissa, v1_exponent = math.frexp(v1)
+    v2_mantissa, v2_exponent = math.frexp(v2)
+    return v1_exponent == v2_exponent and abs(v1_mantissa - v2_mantissa) < EPSILON
 
 
 class TestDataConvert:
