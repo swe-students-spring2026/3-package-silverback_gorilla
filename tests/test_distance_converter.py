@@ -303,5 +303,8 @@ class TestDistanceConvert:
         assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.FT), 65181600.09907605)
         assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.YD), 21727200.033025347)
         assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.MI), 12345)
-
-
+    
+    def test_convert_distance_error(self):
+        with pytest.raises(InvalidUnitError):
+            convert_distance(0, "blah", UnitDistance.M)
+            convert_distance(0, UnitDistance.M, "blah")
