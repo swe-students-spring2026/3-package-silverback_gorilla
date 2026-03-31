@@ -67,6 +67,30 @@ print(convert_temperature(32, "F", "C"))
 
 [Example](example.py)
 
+### Run Example Locally
+
+From the project root:
+
+```bash
+# using pipenv
+pipenv run pip install -e .
+pipenv run python example.py
+```
+
+### Run Example in Another Project
+
+Install from PyPI:
+
+```bash
+pip install unit-convert-swe-nyu
+```
+
+Create an `example.py` file in any folder, then run:
+
+```bash
+python example.py
+```
+
 ## How to Contribute
 
 To contribute to this project you must fork the repository, then submit your changes via pull request and wait for it to be accepted.
