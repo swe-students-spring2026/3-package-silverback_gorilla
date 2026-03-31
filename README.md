@@ -16,10 +16,7 @@ Needs to be updated
 ### Setup
 
 ```bash 
-pip install pipenv
-pipenv install
-pip install build
-python -m build
+pip install unit-convert-swe-nyu
 ```
 
 The package is now built!
@@ -45,7 +42,20 @@ Converts temperature units (Celsius, Fahrenheit, Kelvin)
 ### Example Usage
 
 ```python
-from your_package import convert_data, convert_distance, convert_mass, convert_temperature
+# Option 1:
+# from unit_convert import *
+
+# Option 2: explicit import
+from unit_convert import (
+    convert_data,
+    convert_distance,
+    convert_mass,
+    convert_temperature,
+    UnitData,
+    UnitDistance,
+    UnitMass,
+    UnitTemperature,
+)
 
 print(convert_data(1024, "KB", "MB"))
 print(convert_distance(1, "mile", "km"))
@@ -56,6 +66,30 @@ print(convert_temperature(32, "F", "C"))
 ### Example File
 
 [Example](example.py)
+
+### Run Example Locally
+
+From the project root:
+
+```bash
+# using pipenv
+pipenv run pip install -e .
+pipenv run python example.py
+```
+
+### Run Example in Another Project
+
+Install from PyPI:
+
+```bash
+pip install unit-convert-swe-nyu
+```
+
+Create an `example.py` file in any folder, then run:
+
+```bash
+python example.py
+```
 
 ## How to Contribute
 
