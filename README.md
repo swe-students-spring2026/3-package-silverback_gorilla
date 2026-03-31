@@ -1,4 +1,4 @@
-# Python Package Exercise
+# Python Unit Converter
 
 ## Package Description
 
@@ -8,8 +8,7 @@ This package allows for users to easily convert values to different units, for d
 
 ## PyPI Page
  
-[Link](https://github.com/swe-students-spring2026/3-package-silverback_gorilla/tree/main)
-Needs to be updated
+[Link](https://pypi.org/project/unit-convert-swe-nyu/1.0.0/)
 
 ## How to Use
 
