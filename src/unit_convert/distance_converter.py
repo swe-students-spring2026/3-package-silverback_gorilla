@@ -1,4 +1,4 @@
-from unit_convert.converter_types import InvalidUnitError, UnitDistance
+from .converter_types import InvalidUnitError, UnitDistance
 
 def convert_distance(x: float, unit_from: UnitDistance, unit_to: UnitDistance) -> float:
     if(unit_from == unit_to): return x

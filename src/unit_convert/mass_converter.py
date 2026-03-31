@@ -1,4 +1,4 @@
-from unit_convert.converter_types import InvalidUnitError, UnitMass
+from .converter_types import InvalidUnitError, UnitMass
 import numbers
 
 NDIGITS = 8
