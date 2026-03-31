@@ -1,6 +1,6 @@
 from .converter_types import InvalidUnitError, UnitData
 
-NDIGITS = 4
+NDIGITS = 8
 
 
 def convert_data(x: float, unit_from: UnitData, unit_to: UnitData) -> float:
