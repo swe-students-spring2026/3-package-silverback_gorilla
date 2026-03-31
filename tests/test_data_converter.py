@@ -1,7 +1,7 @@
 import pytest
 
-from unit_convert.converter_types import InvalidUnitError, UnitData
-from unit_convert.data_converter import convert_data
+from src.unit_convert.converter_types import InvalidUnitError, UnitData
+from src.unit_convert.data_converter import convert_data
 
 
 EPSILON = 0.000001
