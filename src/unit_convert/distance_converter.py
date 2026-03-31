@@ -18,9 +18,12 @@ def convert_distance(x: float, unit_from: UnitDistance, unit_to: UnitDistance) -
         "mile":       1/1609.344 # 1/1609,
     }
 
-    if(unit_from.value not in meter_to_unit_ratios):
-        raise InvalidUnitError("`unit_from` is not an accepted distance unit")
-    if(unit_to.value not in meter_to_unit_ratios):
-        raise InvalidUnitError("`unit_to` is not an accepted distance unit")
+    try:
+        if(unit_from.value not in meter_to_unit_ratios):
+            raise InvalidUnitError("`unit_from` is not an accepted distance unit")
+        if(unit_to.value not in meter_to_unit_ratios):
+            raise InvalidUnitError("`unit_to` is not an accepted distance unit")
 
-    return x / meter_to_unit_ratios[unit_from.value] * meter_to_unit_ratios[unit_to.value]
+        return x / meter_to_unit_ratios[unit_from.value] * meter_to_unit_ratios[unit_to.value]
+    except (AttributeError, TypeError):
+        raise InvalidUnitError("Invalid data unit provided")
