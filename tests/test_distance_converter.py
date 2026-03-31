@@ -1,6 +1,6 @@
 import pytest
-from unit_convert.distance_converter import convert_distance
-from unit_convert.converter_types import InvalidUnitError, UnitDistance
+from src.unit_convert.distance_converter import convert_distance
+from src.unit_convert.converter_types import InvalidUnitError, UnitDistance
 
 EPSILON = 0.000001
 

@@ -1,5 +1,5 @@
 import pytest
-from unit_convert import mass_converter
+from src.unit_convert import mass_converter
 
 EPSILON = 1e-6
 POUNDS_TO_GRAMS = 453.59237

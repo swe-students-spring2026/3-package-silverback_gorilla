@@ -1,4 +1,4 @@
-from unit_convert.converter_types import InvalidUnitError, UnitData
+from .converter_types import InvalidUnitError, UnitData
 
 NDIGITS = 4
 
