@@ -2,13 +2,17 @@ import pytest
 from src.unit_convert.distance_converter import convert_distance
 from src.unit_convert.converter_types import InvalidUnitError, UnitDistance
 
+import math
+
 EPSILON = 0.000001
 
 def _is_close_enough(v1: float, v2: float) -> bool:
-    return abs(v1 - v2) < EPSILON
+    v1_mantissa, v1_exponent = math.frexp(v1)
+    v2_mantissa, v2_exponent = math.frexp(v2)
+    return v1_exponent == v2_exponent and abs(v1_mantissa - v2_mantissa) < EPSILON
 
-class TestTemperatureConvert:
-    def test_convert_temperature(self):
+class TestDistanceConvert:
+    def test_convert_distance(self):
         x = 10
         assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.FM), 10000.0)
         assert _is_close_enough(convert_distance(x, UnitDistance.PM, UnitDistance.PM), 10)
@@ -299,5 +303,8 @@ class TestTemperatureConvert:
         assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.FT), 65181600.09907605)
         assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.YD), 21727200.033025347)
         assert _is_close_enough(convert_distance(x, UnitDistance.MI, UnitDistance.MI), 12345)
-
-
+    
+    def test_convert_distance_error(self):
+        with pytest.raises(InvalidUnitError):
+            convert_distance(0, "blah", UnitDistance.M)
+            convert_distance(0, UnitDistance.M, "blah")
