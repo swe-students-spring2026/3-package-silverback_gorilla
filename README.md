@@ -1,5 +1,73 @@
 # Python Package Exercise
 
-An exercise to create a Python package, build it, test it, distribute it, and use it. See [instructions](./instructions.md) for details.
+## Package Description
+
+This package allows for users to easily convert values to different units, for data, distance, mass, and temperature.
 
 [![Python package CI](https://github.com/swe-students-spring2026/3-package-silverback_gorilla/actions/workflows/python-package-ci.yml/badge.svg)](https://github.com/swe-students-spring2026/3-package-silverback_gorilla/actions/workflows/python-package-ci.yml)
+
+## PyPI Page
+ 
+[Link](https://github.com/swe-students-spring2026/3-package-silverback_gorilla/tree/main)
+Needs to be updated
+
+## How to Use
+
+### Setup
+
+```bash 
+pip install pipenv
+pipenv install
+pip install build
+python -m build
+```
+
+The package is now built!
+
+### Function Overview
+
+```convert_data(x: float, unit_from: UnitData, unit_to: UnitData)```
+
+Converts data units (KB, MB, GB, etc.)
+
+```convert_distance(x: float, unit_from: UnitDistance, unit_to: UnitDistance)```
+
+Converts distance units (meters, kilometers, miles, etc.)
+
+```convert_mass(x: float, unit_from: UnitMass, unit_to: UnitMass)```
+
+Converts mass units (grams, kilograms, pounds)
+
+```convert_temperature(x: float, unit_from: UnitTemperature, unit_to: UnitTemperature)```
+
+Converts temperature units (Celsius, Fahrenheit, Kelvin)
+
+### Example Usage
+
+```python
+from your_package import convert_data, convert_distance, convert_mass, convert_temperature
+
+print(convert_data(1024, "KB", "MB"))
+print(convert_distance(1, "mile", "km"))
+print(convert_mass(10, "kg", "lb"))
+print(convert_temperature(32, "F", "C"))
+```
+
+### Example File
+
+[Example](example.py)
+
+## How to Contribute
+
+To contribute to this project you must fork the repository, then submit your changes via pull request and wait for it to be accepted.
+
+Test the project using
+```pytest```
+before creating a pull request.
+
+## Team members
+
+Aleks Nuzhnyi - [GitHub Profile](https://github.com/nuzhny25)  
+Calvin Pun - [GitHub Profile](https://github.com/CalvinPun)  
+Sunil Parab - [GitHub Profile](https://github.com/SunilParab)  
+Yash Pazhianur - [GitHub Profile](https://github.com/yashpaz123)  
