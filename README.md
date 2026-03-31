@@ -8,7 +8,7 @@ This package allows for users to easily convert values to different units, for d
 
 ## PyPI Page
  
-[Link](https://test.pypi.org/project/unit-convert-swe-nyu/1.0.0/)
+[Link](https://pypi.org/project/unit-convert-swe-nyu/1.0.0/)
 
 ## How to Use
 
