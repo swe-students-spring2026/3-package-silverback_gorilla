@@ -1,6 +1,7 @@
 from .converter_types import InvalidUnitError, UnitData
 
-NDIGITS = 4
+NDIGITS = 8
+SAME_UNIT_NDIGITS = 4
 
 
 def convert_data(x: float, unit_from: UnitData, unit_to: UnitData) -> float:
@@ -22,7 +23,7 @@ def convert_data(x: float, unit_from: UnitData, unit_to: UnitData) -> float:
     }
 
     if unit_from == unit_to:
-        return round(x, NDIGITS)
+        return round(x, SAME_UNIT_NDIGITS)
     try:
         if(unit_from.value not in byte_to_unit_ratios):
             raise InvalidUnitError("`unit_from` is not an accepted data unit")
